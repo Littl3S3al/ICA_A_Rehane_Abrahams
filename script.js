@@ -1,5 +1,5 @@
 import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/build/three.module.js';
-import { TrackballControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/controls/TrackballControls.js';
+import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/controls/OrbitControls.js';
 import { CSS3DRenderer, CSS3DObject } from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/renderers/CSS3DRenderer.js';
 
 
@@ -8,11 +8,13 @@ const beginBtn = document.querySelector('#btn-begin');
 const overlay = document.querySelector('#overlay');
 const threeJsWindow = document.querySelector('#three-js-container');
 
+const zoomLevel = 10000;
+const startZoom = 7500;
 // three.js functions
 const main  = () => {
 
     const camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.z = 3000;
+    camera.position.z = zoomLevel;
 
     const scene = new THREE.Scene();
 
@@ -20,36 +22,37 @@ const main  = () => {
     renderer.setSize( window.innerWidth, window.innerHeight );
     threeJsWindow.appendChild( renderer.domElement );
 
-    const controls = new TrackballControls( camera, renderer.domElement );
-    controls.rotateSpeed = 4;
+    const controls = new OrbitControls( camera, renderer.domElement );
+    controls.zoomSpeed = 0.5;
+    controls.rotateSpeed = 0.1;
+    controls.maxDistance = zoomLevel;
+    // horizontal panning
+    controls.minAzimuthAngle = -Math.PI*0.05;
+    controls.maxAzimuthAngle = Math.PI*0.05;
+    // vertical panning
+    controls.minPolarAngle = Math.PI * 0.5;
+    controls.maxPolarAngle = Math.PI*0.5;
+
+
+    const layer1 = document.querySelector('.row-1');
+    const layer2 = document.querySelector('.row-2');
+    const layer3 = document.querySelector('.row-3');
+    const layer4 = document.querySelector('.row-4');
     
-    var Element = function ( id, x, y, z, ry ) {
+    var Element = function (layer, x, y, z) {
 
-        var div = document.createElement( 'div' );
-        div.style.width = '480px';
-        div.style.height = '360px';
-        div.style.backgroundColor = '#000';
-
-        var iframe = document.createElement( 'iframe' );
-        iframe.style.width = '480px';
-        iframe.style.height = '360px';
-        iframe.style.border = '0px';
-        iframe.src = [ 'https://www.youtube.com/embed/', id, '?rel=0' ].join( '' );
-        div.appendChild( iframe );
-
-        var object = new CSS3DObject( div );
+        var object = new CSS3DObject( layer );
         object.position.set( x, y, z );
-        object.rotation.y = ry;
 
         return object;
 
     };
 
     var group = new THREE.Group();
-    group.add( new Element( 'SJOz3qjfQXU', 0, 0, 240, 0 ) );
-    group.add( new Element( 'Y2-xZ-1HE-Q', 240, 0, 0, Math.PI / 2 ) );
-    group.add( new Element( 'IrydklNpcFI', 0, 0, - 240, Math.PI ) );
-    group.add( new Element( '9ubytEsCaS0', - 240, 0, 0, - Math.PI / 2 ) );
+    group.add( new Element( layer1, 0, 0, startZoom ) );
+    group.add( new Element( layer2, 0, 0, startZoom - 500 ) );
+    group.add( new Element( layer3, 1700, 0, startZoom - 400 ) );
+    group.add( new Element( layer4, 0, 0, startZoom - 2000 ) );
     scene.add( group );
 
 

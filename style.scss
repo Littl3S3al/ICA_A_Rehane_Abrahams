@@ -23,6 +23,7 @@ body{
 #three-js-container{
     z-index: -1;
     display: none;
+    background: black;
 
     #c{
         width: 100vw;
@@ -30,6 +31,22 @@ body{
         z-index: 1;
     }
 
+}
+
+.temp{
+    background: black;
+    display: none;
+    color: white;
+}
+.row-3{
+    color: white;
+    font-size: 2em;
+}
+
+.text-block{
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid white;
+    color: white;
 }
 
 
