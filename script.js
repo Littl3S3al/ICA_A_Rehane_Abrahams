@@ -84,7 +84,7 @@ function setSceneHeight() {
   const height =
     window.innerHeight +
     scenePerspective * cameraSpeed +
-    itemZ * 3  * cameraSpeed * numberOfItems;
+    itemZ * 2.5  * cameraSpeed * numberOfItems;
 
   // Update --viewportHeight value
   document.documentElement.style.setProperty("--viewportHeight", height);
