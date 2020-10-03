@@ -10,6 +10,13 @@ beginBtn.addEventListener('click', () => {
         overlay.style.display = 'none';
     }, 1000);
 })
+beginBtn.addEventListener('touchend', () => {
+    overlay.style.opacity = 0;
+    viewport.style.display  = 'block';
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 1000);
+})
 
 
 let layers = [];
@@ -34,17 +41,17 @@ setSceneHeight();
 
 function moveCameraAngle(event) {
   const xGap =
-    (((event.clientX - window.innerWidth / 2) * 100) /
+    (((event.clientX - window.innerWidth / 2) * 200) /
       (window.innerWidth / 2)) *
     -1;
   const yGap =
-    (((event.clientY - window.innerHeight / 2) * 100) /
+    (((event.clientY - window.innerHeight / 2) * 200) /
       (window.innerHeight / 2)) *
     -1;
   const newPerspectiveOriginX =
-    perspectiveOrigin.x + (xGap * perspectiveOrigin.maxGap) / 100;
+    perspectiveOrigin.x + (xGap * perspectiveOrigin.maxGap) / 200;
   const newPerspectiveOriginY =
-    perspectiveOrigin.y + (yGap * perspectiveOrigin.maxGap) / 100;
+    perspectiveOrigin.y + (yGap * perspectiveOrigin.maxGap) / 200;
 
   document.documentElement.style.setProperty(
     "--scenePerspectiveOriginX",
@@ -77,7 +84,7 @@ function setSceneHeight() {
   const height =
     window.innerHeight +
     scenePerspective * cameraSpeed +
-    itemZ * cameraSpeed * numberOfItems;
+    itemZ * 2  * cameraSpeed * numberOfItems;
 
   // Update --viewportHeight value
   document.documentElement.style.setProperty("--viewportHeight", height);

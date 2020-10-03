@@ -2,7 +2,7 @@
   --scenePerspective: 1;
   --scenePerspectiveOriginX: 50;
   --scenePerspectiveOriginY: 30;
-  --itemZ: 2;
+  --itemZ: 0.5;
   --cameraSpeed: 150;
   --cameraZ: 0;
   --viewportHeight: 0;
@@ -51,12 +51,29 @@ body {
   will-change: transform;
 }
 .viewport .scene3D-container .scene3D .layers {
-  background: red;
   position: absolute;
   display: block;
   width: 100%;
-  top: 5%;
+  height: 100vh;
+  top: 0;
   color: white;
+}
+.viewport .scene3D-container .scene3D .layers .img-full {
+  width: auto;
+  max-height: 100vh;
+}
+.viewport .scene3D-container .scene3D .layers .text-block {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid white;
+  padding: 2em;
+}
+.viewport .scene3D-container .scene3D .layers .text-block-major {
+  background: rgba(23, 32, 42, 0.8);
+  padding: 5em;
+  border: 1px solid white;
+}
+.viewport .scene3D-container .scene3D .layers .img-opaque {
+  opacity: 0.7;
 }
 @media only screen and (min-width: 600px) {
   .viewport .scene3D-container .scene3D .layers {
@@ -64,17 +81,137 @@ body {
     height: 100vh;
   }
 }
-.viewport .scene3D-container .scene3D .layers:nth-child(0) {
-  transform: translate3D(0, 0, calc(var(--itemZ) * var(--cameraSpeed) * 0 * -1px));
-}
 .viewport .scene3D-container .scene3D .layers:nth-child(1) {
-  transform: translate3D(0, 0, calc(var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
+  transform: translate3D(0, 0, calc( var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
 }
 .viewport .scene3D-container .scene3D .layers:nth-child(2) {
   transform: translate3D(0, 0, calc(var(--itemZ) * var(--cameraSpeed) * 2 * -1px));
 }
 .viewport .scene3D-container .scene3D .layers:nth-child(3) {
-  transform: translate3D(0, 0, calc(var(--itemZ) * var(--cameraSpeed) * 3 * -1px));
+  transform: translate3D(0, 0, calc(var(--itemZ) * 1.5 * var(--cameraSpeed) * 3 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(4) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2 * var(--cameraSpeed) * 4 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(5) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2 * var(--cameraSpeed) * 5 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(6) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2 * var(--cameraSpeed) * 6 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(7) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.1 * var(--cameraSpeed) * 7 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(8) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 8 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(9) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 8 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(10) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 10 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(11) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 11 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(1) {
+  transform: translate3D(0, 0, calc( var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(2) {
+  transform: translate3D(0, 0, calc(var(--itemZ) * var(--cameraSpeed) * 2 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(3) {
+  transform: translate3D(0, 0, calc(var(--itemZ) * 1.5 * var(--cameraSpeed) * 3 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(4) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2 * var(--cameraSpeed) * 4 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(5) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2 * var(--cameraSpeed) * 5 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(6) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2 * var(--cameraSpeed) * 6 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(7) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.1 * var(--cameraSpeed) * 7 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(8) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 8 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(9) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 8 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(10) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 10 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(11) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 11 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(1) {
+  transform: translate3D(0, 0, calc( var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(2) {
+  transform: translate3D(0, 0, calc(var(--itemZ) * var(--cameraSpeed) * 2 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(3) {
+  transform: translate3D(0, 0, calc(var(--itemZ) * 1.5 * var(--cameraSpeed) * 3 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(4) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2 * var(--cameraSpeed) * 4 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(5) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2 * var(--cameraSpeed) * 5 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(6) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2 * var(--cameraSpeed) * 6 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(7) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.1 * var(--cameraSpeed) * 7 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(8) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 8 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(9) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 8 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(10) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 10 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(11) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 11 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(1) {
+  transform: translate3D(0, 0, calc( var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(2) {
+  transform: translate3D(0, 0, calc(var(--itemZ) * var(--cameraSpeed) * 2 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(3) {
+  transform: translate3D(0, 0, calc(var(--itemZ) * 1.5 * var(--cameraSpeed) * 3 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(4) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2 * var(--cameraSpeed) * 4 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(5) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2 * var(--cameraSpeed) * 5 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(6) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2 * var(--cameraSpeed) * 6 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(7) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.1 * var(--cameraSpeed) * 7 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(8) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 8 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(9) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 8 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(10) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 10 * -1px));
+}
+.viewport .scene3D-container .scene3D .layers:nth-child(11) {
+  transform: translate3D(0, 0, calc(var(--itemZ) *2.2 * var(--cameraSpeed) * 11 * -1px));
 }
 
 .scene3D > div {

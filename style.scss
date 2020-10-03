@@ -2,7 +2,7 @@
     --scenePerspective: 1;
     --scenePerspectiveOriginX: 50;
     --scenePerspectiveOriginY: 30;
-    --itemZ: 2;
+    --itemZ: 0.5;
     --cameraSpeed: 150; // Where 1 is the fastest
     --cameraZ: 0;
     --viewportHeight: 0;
@@ -53,12 +53,30 @@
         will-change: transform;
   
         .layers{
-            background: red;
             position: absolute;
             display: block;
             width: 100%;
-            top: 5%;
-            color: white;          
+            height: 100vh;
+            top: 0;
+            color: white;    
+            
+            .img-full{
+                width: auto;
+                max-height: 100vh;
+            }
+            .text-block{
+                background: rgba(0, 0, 0, 0.8);
+                border: 1px solid white;
+                padding: 2em;
+            }
+            .text-block-major{
+                background: rgba(23, 32, 42, 0.8);
+                padding: 5em;
+                border: 1px solid white;
+            }
+            .img-opaque{
+                opacity: 0.7;
+            }
   
           @media only screen and (min-width: 600px) {
             width: 100%;
@@ -67,12 +85,75 @@
 
   
           @for $i from 0 through 3 {
-            &:nth-child(#{$i}) {
+            &:nth-child(1) {
               transform: translate3D(
                 0, 0,
-                calc(var(--itemZ) * var(--cameraSpeed) * #{$i} * -1px)
+                calc( var(--itemZ) * var(--cameraSpeed) * #{1} * -1px)
               );
             }
+            &:nth-child(2){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) * var(--cameraSpeed) * #{2} * -1px)
+              );
+            }
+            &:nth-child(3){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) * 1.5 * var(--cameraSpeed) * #{3} * -1px)
+              );
+            }
+            &:nth-child(4){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2 * var(--cameraSpeed) * #{4} * -1px)
+              );
+            }
+            &:nth-child(5){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2 * var(--cameraSpeed) * #{5} * -1px)
+              );
+            }
+            &:nth-child(6){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2 * var(--cameraSpeed) * #{6} * -1px)
+              );
+            }
+            &:nth-child(7){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2.1 * var(--cameraSpeed) * #{7} * -1px)
+              );
+            }
+            &:nth-child(8){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2.2 * var(--cameraSpeed) * #{8} * -1px)
+              );
+            }
+            &:nth-child(9){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2.2 * var(--cameraSpeed) * #{8} * -1px)
+              );
+            }
+
+            // section 3
+            &:nth-child(10){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2.2 * var(--cameraSpeed) * #{10} * -1px)
+              );
+            }
+            &:nth-child(11){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2.2 * var(--cameraSpeed) * #{11} * -1px)
+              );
+            }
+
           }
         }
       }
