@@ -1,101 +1,84 @@
-import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/build/three.module.js';
-import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/controls/OrbitControls.js';
-import { CSS3DRenderer, CSS3DObject } from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/renderers/CSS3DRenderer.js';
-
-
-// variables for event listeners
 const beginBtn = document.querySelector('#btn-begin');
 const overlay = document.querySelector('#overlay');
-const threeJsWindow = document.querySelector('#three-js-container');
+const viewport = document.querySelector('.viewport');
+const divs = viewport.querySelectorAll('.layers')
 
-const zoomLevel = 10000;
-const startZoom = 7500;
-// three.js functions
-const main  = () => {
-
-    const camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.z = zoomLevel;
-
-    const scene = new THREE.Scene();
-
-    const renderer = new CSS3DRenderer();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    threeJsWindow.appendChild( renderer.domElement );
-
-    const controls = new OrbitControls( camera, renderer.domElement );
-    controls.zoomSpeed = 0.5;
-    controls.rotateSpeed = 0.1;
-    controls.maxDistance = zoomLevel;
-    // horizontal panning
-    controls.minAzimuthAngle = -Math.PI*0.05;
-    controls.maxAzimuthAngle = Math.PI*0.05;
-    // vertical panning
-    controls.minPolarAngle = Math.PI * 0.5;
-    controls.maxPolarAngle = Math.PI*0.5;
+beginBtn.addEventListener('click', () => {
+    overlay.style.opacity = 0;
+    viewport.style.display  = 'block';
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 1000);
+})
 
 
-    const layer1 = document.querySelector('.row-1');
-    const layer2 = document.querySelector('.row-2');
-    const layer3 = document.querySelector('.row-3');
-    const layer4 = document.querySelector('.row-4');
-    
-    var Element = function (layer, x, y, z) {
+let layers = [];
 
-        var object = new CSS3DObject( layer );
-        object.position.set( x, y, z );
+const perspectiveOrigin = {
+  x: parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue(
+      "--scenePerspectiveOriginX"
+    )
+  ),
+  y: parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue(
+      "--scenePerspectiveOriginY"
+    )
+  ),
+  maxGap: 10
+};
 
-        return object;
+window.addEventListener("scroll", moveCamera);
+window.addEventListener("mousemove", moveCameraAngle);
+setSceneHeight();
 
-    };
+function moveCameraAngle(event) {
+  const xGap =
+    (((event.clientX - window.innerWidth / 2) * 100) /
+      (window.innerWidth / 2)) *
+    -1;
+  const yGap =
+    (((event.clientY - window.innerHeight / 2) * 100) /
+      (window.innerHeight / 2)) *
+    -1;
+  const newPerspectiveOriginX =
+    perspectiveOrigin.x + (xGap * perspectiveOrigin.maxGap) / 100;
+  const newPerspectiveOriginY =
+    perspectiveOrigin.y + (yGap * perspectiveOrigin.maxGap) / 100;
 
-    var group = new THREE.Group();
-    group.add( new Element( layer1, 0, 0, startZoom ) );
-    group.add( new Element( layer2, 0, 0, startZoom - 500 ) );
-    group.add( new Element( layer3, 1700, 0, startZoom - 400 ) );
-    group.add( new Element( layer4, 0, 0, startZoom - 2000 ) );
-    scene.add( group );
-
-
-
-    const resizeRendererToDisplaySize = (renderer) => {
-
-        const width = window.innerWidth;;
-        const height = window.innerHeight;
-        const needResize = renderer.domElement.width !== width || renderer.domElement.height !== height;
-        if (needResize) {
-        renderer.setSize(width, height, false);
-        }
-        return needResize;
-
-    }
-
-
-
-    // create a loop to render animation
-    const render = () => {
-
-
-        if (resizeRendererToDisplaySize(renderer)) {
-            camera.aspect = renderer.domElement.clientWidth / renderer.domElement.clientHeight;
-            camera.updateProjectionMatrix();
-            }
-        renderer.render(scene, camera);
-        controls.update();
-
-        requestAnimationFrame(render);
-    }
-
-    // render the scene
-    renderer.render(scene, camera);
-    requestAnimationFrame(render);
-
-
+  document.documentElement.style.setProperty(
+    "--scenePerspectiveOriginX",
+    newPerspectiveOriginX
+  );
+  document.documentElement.style.setProperty(
+    "--scenePerspectiveOriginY",
+    newPerspectiveOriginY
+  );
 }
 
+function moveCamera() {
+  document.documentElement.style.setProperty("--cameraZ", window.pageYOffset);
+}
 
-// event listeners
-beginBtn.addEventListener('click', () => {
-    overlay.style.display = 'none';
-    threeJsWindow.style.display = 'block';
-    main();
-});
+function setSceneHeight() {
+  const numberOfItems = divs.length; // Or number of items you have in `.scene3D`
+  const itemZ = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue("--itemZ")
+  );
+  const scenePerspective = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue(
+      "--scenePerspective"
+    )
+  );
+  const cameraSpeed = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue("--cameraSpeed")
+  );
+
+  const height =
+    window.innerHeight +
+    scenePerspective * cameraSpeed +
+    itemZ * cameraSpeed * numberOfItems;
+
+  // Update --viewportHeight value
+  document.documentElement.style.setProperty("--viewportHeight", height);
+}
