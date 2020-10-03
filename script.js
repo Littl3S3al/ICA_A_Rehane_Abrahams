@@ -1,7 +1,9 @@
 const beginBtn = document.querySelector('#btn-begin');
 const overlay = document.querySelector('#overlay');
 const viewport = document.querySelector('.viewport');
-const divs = viewport.querySelectorAll('.layers')
+const divs = viewport.querySelectorAll('.layers');
+const forwards = document.querySelector('#forwards');
+const backwards = document.querySelector('#backwards');
 
 beginBtn.addEventListener('click', () => {
     overlay.style.opacity = 0;
@@ -89,3 +91,14 @@ function setSceneHeight() {
   // Update --viewportHeight value
   document.documentElement.style.setProperty("--viewportHeight", height);
 }
+
+
+forwards.addEventListener('click', () => {
+    window.scrollTo(0, window.pageYOffset+100);
+    moveCamera();
+})
+
+backwards.addEventListener('click', () => {
+    window.scrollTo(0, window.pageYOffset-100);
+    moveCamera();
+})

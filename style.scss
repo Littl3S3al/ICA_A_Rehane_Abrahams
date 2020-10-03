@@ -12,6 +12,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
   }
 
   #overlay{
@@ -22,7 +23,7 @@
       top: 0;
       left: 0;
       background: black;
-      z-index: 1000;
+      z-index: 1500;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -31,6 +32,12 @@
   // Set 3D scene
   body{
       background: black;
+  }
+  .controls{
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      z-index: 1000;;
   }
   
   .viewport {
