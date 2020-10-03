@@ -68,6 +68,8 @@
                 background: rgba(0, 0, 0, 0.8);
                 border: 1px solid white;
                 padding: 2em;
+                overflow-y: scroll;
+                max-height: 100%;
             }
             .text-block-major{
                 background: rgba(23, 32, 42, 0.8);
@@ -151,6 +153,52 @@
                 transform: translate3D(
                 0, 0,
                 calc(var(--itemZ) *2.2 * var(--cameraSpeed) * #{11} * -1px)
+              );
+            }
+
+            // section 4
+            &:nth-child(12){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2.2 * var(--cameraSpeed) * #{12} * -1px)
+              );
+            }
+            &:nth-child(13){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2.2 * var(--cameraSpeed) * #{13} * -1px)
+              );
+            }
+            &:nth-child(14){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2.2 * var(--cameraSpeed) * #{14} * -1px)
+              );
+            }
+            &:nth-child(15){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2.5 * var(--cameraSpeed) * #{15} * -1px)
+              );
+            }
+
+            // section 5
+            &:nth-child(16){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2.5 * var(--cameraSpeed) * #{16} * -1px)
+              );
+            }
+            &:nth-child(17){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2.5 * var(--cameraSpeed) * #{17} * -1px)
+              );
+            }
+            &:nth-child(18){
+                transform: translate3D(
+                0, 0,
+                calc(var(--itemZ) *2.5 * var(--cameraSpeed) * #{18} * -1px)
               );
             }
 
